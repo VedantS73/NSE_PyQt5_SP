@@ -2,6 +2,7 @@ import sys
 from PyQt5.QtWidgets import QApplication, QWidget, QVBoxLayout, QPushButton
 from frames.plot_symbols_nse import PlotSymbolsNSE
 from frames.update_symbols_nse import UpdateSymbolsNSE
+from frames.plotly_financial import PlotlyFinancial
 import sqlite3
 import csv
 
@@ -18,6 +19,9 @@ class StockPlotApp(QWidget):
         # Buttons
         self.plot_button = QPushButton('NSE Price Plot', self)
         self.plot_button.clicked.connect(self.open_plot_symbols_nse)
+        
+        self.update_button = QPushButton('NSE Plotly Financial Plots', self)
+        self.update_button.clicked.connect(self.open_plotly_financial)
 
         self.update_button = QPushButton('NSE Listings Update', self)
         self.update_button.clicked.connect(self.open_update_symbols_nse)
@@ -35,6 +39,10 @@ class StockPlotApp(QWidget):
     def open_update_symbols_nse(self):
         self.update_symbols_nse = UpdateSymbolsNSE()
         self.update_symbols_nse.show()
+    
+    def open_plotly_financial(self):
+        self.plotly_financial = PlotlyFinancial()
+        self.plotly_financial.show()
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
